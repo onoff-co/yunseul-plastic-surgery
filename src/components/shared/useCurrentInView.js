@@ -12,4 +12,3 @@ export default function useCurrentInView() {
   }, []);
   return listRef;
 }
-

@@ -6,6 +6,7 @@ import ConsultationForm from "../../components/shared/ConsultationForm.jsx";
 import ImageSlot from "../../components/shared/ImageSlot.jsx";
 import YunseulLight from "../../components/shared/YunseulLight.jsx";
 import useSectionReveal from "../../components/home/useSectionReveal.js";
+import useCurrentInView from "../../components/shared/useCurrentInView.js";
 import { procedures } from "../../data/procedures.mjs";
 import { clinicalNotes } from "../../data/clinicalNotes.mjs";
 import { subProcedures, findSubProcedure } from "../../data/subProcedures.mjs";
@@ -30,6 +31,7 @@ export default function SubProcedure({ slug, sub }) {
   const notes = clinicalNotes[slug];
   const bookingUrl = `/consultation?procedure=${slug}`;
   const root = useSectionReveal(".pd-reveal");
+  const subnavRef = useCurrentInView();
   const seed = procedures.indexOf(procedure) * 3 + siblings.indexOf(item) + 5;
 
   return (
@@ -38,7 +40,7 @@ export default function SubProcedure({ slug, sub }) {
       <main id="main-content" className="pd sp" ref={root}>
         <nav className="pd-subnav sp-subnav" aria-label={`${procedure.name} 세부 진료`}>
           <div className="pd-subnav-inner">
-            <div className="pd-subnav-links">
+            <div className="pd-subnav-links" ref={subnavRef}>
               <SiteLink href={`/procedures/${slug}`}>{procedure.name} 전체</SiteLink>
               {siblings.map((entry) => (
                 <SiteLink

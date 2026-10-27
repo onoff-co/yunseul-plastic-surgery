@@ -828,7 +828,7 @@
     padding-left: var(--ys-gutter);
   }
   .pd-subnav-links {
-    padding-right: 24px;
+    padding-right: 40px;
     -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent);
     mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent);
   }
