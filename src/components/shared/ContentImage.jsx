@@ -1,4 +1,5 @@
 import { imageSizes } from "../../data/imageSizes.mjs";
+import { toSiteUrl } from "../../app/paths.mjs";
 
 export default function ContentImage({
   src,
@@ -11,7 +12,7 @@ export default function ContentImage({
   return (
     <img
       {...props}
-      src={src}
+      src={toSiteUrl(src)}
       alt={alt}
       className={`content-image ${className}`.trim()}
       width={size?.width}

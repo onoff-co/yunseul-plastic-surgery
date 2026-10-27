@@ -1,3 +1,4 @@
+import SiteLink from "../../components/shared/SiteLink.jsx";
 import PageLayout from "../../components/layout/PageLayout.jsx";
 import ConsultationForm from "../../components/shared/ConsultationForm.jsx";
 import Accordion from "../../components/shared/Accordion.jsx";
@@ -19,9 +20,9 @@ export default function Consultation() {
           <div>
             <h2>궁금한 점부터 편안하게 남겨주세요.</h2>
             <p>관심 진료와 원하는 변화를 정리해 상담을 준비하세요.</p>
-            <a className="ys-link" href="/location">
+            <SiteLink className="ys-link" href="/location">
               방문 안내 확인
-            </a>
+            </SiteLink>
           </div>
         </div>
         <ConsultationForm />

@@ -1,6 +1,8 @@
+import SiteLink from "../shared/SiteLink.jsx";
 import { useEffect, useRef, useState } from "react";
 import { homeSpaces } from "../../data/homeDesign.mjs";
 import ContentImage from "../shared/ContentImage.jsx";
+import { toSiteUrl } from "../../app/paths.mjs";
 
 export default function ClinicExperience() {
   const [selected, setSelected] = useState(0);
@@ -38,16 +40,16 @@ export default function ClinicExperience() {
           <h2 id="ys-space-title">머무는 시간까지 편안하게</h2>
           <p>상담, 준비, 회복. 공간의 흐름을 미리 살펴보세요.</p>
         </div>
-        <a className="ys-link" href="/about">
+        <SiteLink className="ys-link" href="/about">
           병원 둘러보기
-        </a>
+        </SiteLink>
       </div>
       <div className="ys-space-stage">
         {selected === 0 && !failed ? (
           <video
             ref={video}
-            poster={space.image}
-            src="/assets/video/consultation-space.webm"
+            poster={toSiteUrl(space.image)}
+            src={toSiteUrl("/assets/video/consultation-space.webm")}
             muted
             loop
             playsInline

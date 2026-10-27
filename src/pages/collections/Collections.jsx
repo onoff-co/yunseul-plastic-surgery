@@ -1,3 +1,4 @@
+import SiteLink from "../../components/shared/SiteLink.jsx";
 import PageLayout from "../../components/layout/PageLayout.jsx";
 import Accordion from "../../components/shared/Accordion.jsx";
 import { faq } from "../../data/faq.mjs";
@@ -66,9 +67,9 @@ export default function Collections({ kind }) {
       {kind === "faq" && (
         <div className="faq-page">
           <Accordion items={faq} />
-          <a className="button button-primary" href="/consultation">
+          <SiteLink className="button button-primary" href="/consultation">
             상담 준비하기
-          </a>
+          </SiteLink>
         </div>
       )}
       {kind === "privacy" && (

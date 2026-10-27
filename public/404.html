@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>윤슬성형외과로 이동 중</title>
+    <script>
+      (() => {
+        const base = "/yunseul-plastic-surgery/";
+        if (!location.pathname.startsWith(base)) {
+          location.replace(base);
+          return;
+        }
+        const route = "/" + location.pathname.slice(base.length) + location.search + location.hash;
+        location.replace(base + "?route=" + encodeURIComponent(route));
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,3 +1,4 @@
+import SiteLink from "../shared/SiteLink.jsx";
 import { useState } from "react";
 import { procedures } from "../../data/procedures.mjs";
 import { homeProcedureVisuals } from "../../data/homeDesign.mjs";
@@ -15,9 +16,9 @@ export default function ProcedurePreview() {
     >
       <div className="ys-section-head">
         <h2 id="ys-procedures-title">진료 분야</h2>
-        <a className="ys-link" href="/procedures">
+        <SiteLink className="ys-link" href="/procedures">
           전체 진료 안내
-        </a>
+        </SiteLink>
       </div>
       <div className="ys-procedure-layout">
         <div
@@ -52,9 +53,9 @@ export default function ProcedurePreview() {
                 <li key={point}>{point}</li>
               ))}
             </ul>
-            <a className="ys-button" href={`/procedures/${selected}`}>
+            <SiteLink className="ys-button" href={`/procedures/${selected}`}>
               {current.name} 알아보기
-            </a>
+            </SiteLink>
           </div>
           <figure>
             <ContentImage

@@ -33,5 +33,6 @@
   --space-6: 7rem;
   --radius: 0;
   --sans: "Noto Sans KR", "DM Sans", sans-serif;
+  --serif: "Noto Serif KR", "Nanum Myeongjo", Georgia, serif;
   --display: "DM Sans", "Noto Sans KR", sans-serif;
 }

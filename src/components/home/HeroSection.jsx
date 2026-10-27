@@ -1,7 +1,9 @@
+import SiteLink from "../shared/SiteLink.jsx";
 import { useState } from "react";
 import { pageImages } from "../../data/pageImages.mjs";
 import { imageSizes } from "../../data/imageSizes.mjs";
 import ContentImage from "../shared/ContentImage.jsx";
+import { toSiteUrl } from "../../app/paths.mjs";
 
 const slides = [
   {
@@ -36,7 +38,7 @@ export default function HeroSection() {
         {index === 0 && (
           <source
             media="(max-width: 600px)"
-            srcSet={pageImages.home.heroMobile}
+            srcSet={toSiteUrl(pageImages.home.heroMobile)}
             width={imageSizes[pageImages.home.heroMobile].width}
             height={imageSizes[pageImages.home.heroMobile].height}
           />
@@ -65,9 +67,9 @@ export default function HeroSection() {
             ))}
           </h1>
           <p>{slide.body}</p>
-          <a className="ys-button" href={slide.href}>
+          <SiteLink className="ys-button" href={slide.href}>
             {slide.action}
-          </a>
+          </SiteLink>
         </div>
       </div>
       <div className="ys-container ys-hero-bottom">

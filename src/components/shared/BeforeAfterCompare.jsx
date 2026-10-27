@@ -1,6 +1,7 @@
 import { useId, useRef, useState } from "react";
 import { imageSizes } from "../../data/imageSizes.mjs";
 import { clampComparison, comparisonPosition } from "./comparison.mjs";
+import { toSiteUrl } from "../../app/paths.mjs";
 
 // The supplied asset contains two equal panels. Each half retains its original pixels.
 export default function BeforeAfterCompare({
@@ -35,7 +36,7 @@ export default function BeforeAfterCompare({
       data-comparison-src={src}
       style={{
         "--compare-position": `${position}%`,
-        "--compare-image": `url("${src}")`,
+        "--compare-image": `url("${toSiteUrl(src)}")`,
         "--compare-aspect": `${(size?.width || 1600) / 2} / ${size?.height || 1000}`,
       }}
     >

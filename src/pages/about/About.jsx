@@ -1,3 +1,4 @@
+import SiteLink from "../../components/shared/SiteLink.jsx";
 import PageLayout from "../../components/layout/PageLayout.jsx";
 import { EquipmentGallery } from "../../components/shared/FacilityGallery.jsx";
 import { pageImages } from "../../data/pageImages.mjs";
@@ -45,14 +46,14 @@ export default function About() {
             방법과 회복 과정, 예상되는 부작용과 한계까지 이해하고 결정할 수
             있도록 설명합니다.
           </p>
-          <a className="ys-link" href="/procedures">
+          <SiteLink className="ys-link" href="/procedures">
             진료 분야 살펴보기
-          </a>
+          </SiteLink>
         </div>
       </section>
-      <a className="ys-link" href="/#ys-space-title" id="facility-space-title">
+      <SiteLink className="ys-link" href="/#ys-space-title" id="facility-space-title">
         상담실·시술 준비실·회복실 미리보기
-      </a>
+      </SiteLink>
       <section
         className="ys-process-section"
         aria-labelledby="ys-process-title"
@@ -69,12 +70,12 @@ export default function About() {
       </section>
       <EquipmentGallery />
       <div className="ys-interior-closing">
-        <a className="ys-button" href="/consultation">
+        <SiteLink className="ys-button" href="/consultation">
           상담 준비
-        </a>
-        <a className="ys-link" href="/location">
+        </SiteLink>
+        <SiteLink className="ys-link" href="/location">
           방문 안내
-        </a>
+        </SiteLink>
       </div>
     </PageLayout>
   );

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { toSiteUrl } from "../../app/paths.mjs";
 
 export default function PointerCard({
   as: Tag = "article",
@@ -33,6 +34,7 @@ export default function PointerCard({
   return (
     <Tag
       {...props}
+      {...(Tag === "a" ? { href: toSiteUrl(props.href) } : {})}
       ref={root}
       className={`pointer-card ${className}`.trim()}
       onPointerEnter={(event) => {

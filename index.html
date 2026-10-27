@@ -5,9 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="윤슬성형외과의 성형 상담과 시술 안내를 확인하세요." />
     <title>윤슬성형외과 | 나를 이해하는 상담</title>
+    <script>
+      (() => {
+        const base = "/yunseul-plastic-surgery/";
+        const route = new URLSearchParams(location.search).get("route");
+        if (route?.startsWith("/") && !route.startsWith("//") && !route.includes("\\")) {
+          history.replaceState(null, "", base + route.slice(1));
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@300;400;500&display=swap" rel="stylesheet" />
     <style>
       .skip-link {
         position: fixed;

@@ -1,6 +1,9 @@
 import { useEffect, useRef } from "react";
 
-export default function useSectionReveal() {
+const homeTargets =
+  ".ys-section-head h2, .ys-story figure, .ys-procedure-panel, .ys-case-preview figure, .ys-space-stage, .ys-care-feature, .ys-care-process";
+
+export default function useSectionReveal(targets = homeTargets) {
   const root = useRef(null);
   useEffect(() => {
     if (
@@ -19,11 +22,9 @@ export default function useSectionReveal() {
       { threshold: 0.12 },
     );
     root.current
-      ?.querySelectorAll(
-        ".ys-section-head h2, .ys-story figure, .ys-procedure-panel, .ys-case-preview figure, .ys-space-stage, .ys-care-feature, .ys-care-process",
-      )
+      ?.querySelectorAll(targets)
       .forEach((element) => observer.observe(element));
     return () => observer.disconnect();
-  }, []);
+  }, [targets]);
   return root;
 }

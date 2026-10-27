@@ -1,3 +1,4 @@
+import SiteLink from "../../components/shared/SiteLink.jsx";
 import ContentSections from "../../components/shared/ContentSections.jsx";
 import { pageContent } from "../../data/pageContent.mjs";
 import PageLayout from "../../components/layout/PageLayout.jsx";
@@ -15,7 +16,7 @@ export default function Procedures() {
       <div className="procedure-directory portrait-directory">
         {procedures.map((item) => (
           <PointerCard key={item.slug}>
-            <a
+            <SiteLink
               href={`/procedures/${item.slug}`}
               className="directory-portrait"
               aria-label={`${item.name} 이미지와 상세 안내`}
@@ -25,19 +26,19 @@ export default function Procedures() {
                 loading="lazy"
                 alt={`${item.name} 분야 이미지`}
               />
-            </a>
+            </SiteLink>
             <div>
               <h2>{item.name}</h2>
               <p>{item.description}</p>
               <p className="directory-meta">{item.detail}</p>
             </div>
-            <a
+            <SiteLink
               className="text-link"
               href={`/procedures/${item.slug}`}
               aria-label={`${item.name} 상세 보기`}
             >
               상세 보기
-            </a>
+            </SiteLink>
           </PointerCard>
         ))}
       </div>
@@ -48,9 +49,9 @@ export default function Procedures() {
             상세페이지에서 분야별 상담 항목을 확인할 수 있습니다. 구체적인
             방법과 회복 계획은 진료 후 개인의 상태에 맞춰 안내드립니다.
           </p>
-          <a className="button button-primary" href="/consultation">
+          <SiteLink className="button button-primary" href="/consultation">
             상담 준비
-          </a>
+          </SiteLink>
         </div>
       </section>
       <ContentSections

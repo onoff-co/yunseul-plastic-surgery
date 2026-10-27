@@ -1,12 +1,28 @@
 import { useState } from "react";
 import { procedures } from "../../data/procedures.mjs";
 import { consultationSelection } from "../../data/procedureVisuals.mjs";
+import { quickConsultKey } from "../layout/QuickConsultBar.jsx";
+
+// 빠른 상담 바에서 넘긴 이름·연락처를 페이지당 한 번만 읽고 바로 지운다.
+let quickConsult;
+function takeQuickConsult() {
+  if (quickConsult) return quickConsult;
+  try {
+    const value = JSON.parse(sessionStorage.getItem(quickConsultKey) || "{}");
+    sessionStorage.removeItem(quickConsultKey);
+    quickConsult = { name: String(value.name ?? ""), phone: String(value.phone ?? "") };
+  } catch {
+    quickConsult = { name: "", phone: "" };
+  }
+  return quickConsult;
+}
 
 export default function ConsultationForm({ initialProcedure = "" }) {
   const selected = consultationSelection(
     initialProcedure ||
       new URLSearchParams(window.location.search).get("procedure"),
   );
+  const [prefill] = useState(takeQuickConsult);
   const [status, setStatus] = useState("");
   const [errors, setErrors] = useState({});
   const handleSubmit = (event) => {
@@ -33,7 +49,7 @@ export default function ConsultationForm({ initialProcedure = "" }) {
     setStatus("입력 내용을 확인했습니다. 정보는 전송되거나 저장되지 않았습니다.");
   };
   return (
-    <form className="consultation-form" onSubmit={handleSubmit} noValidate>
+    <form className="consultation-form" id="consultation-form" onSubmit={handleSubmit} noValidate>
       <p className="form-notice">
         이 양식은 입력 내용만 확인합니다. 정보는 전송·저장되지 않으며 예약도
         접수되지 않습니다.
@@ -45,6 +61,7 @@ export default function ConsultationForm({ initialProcedure = "" }) {
             id="name"
             name="name"
             autoComplete="name"
+            defaultValue={prefill.name}
             maxLength={100}
             aria-invalid={Boolean(errors.name)}
             aria-describedby={errors.name ? "name-error" : undefined}
@@ -65,6 +82,7 @@ export default function ConsultationForm({ initialProcedure = "" }) {
             autoComplete="tel"
             inputMode="tel"
             placeholder="휴대전화 번호"
+            defaultValue={prefill.phone}
             maxLength={24}
             aria-invalid={Boolean(errors.phone)}
             aria-describedby={errors.phone ? "phone-error" : undefined}

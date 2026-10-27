@@ -18,7 +18,9 @@ import "./styles/image-layout.css";
 import "./styles/interaction-upgrade.css";
 import "./styles/typography.css";
 import "./styles/cases.css";
+import "./styles/site-chrome.css";
 import "./styles/procedure-detail.css";
+import "./styles/sub-procedure.css";
 
 createRoot(document.getElementById("app")).render(
   <StrictMode>

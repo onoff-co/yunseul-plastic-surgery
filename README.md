@@ -51,7 +51,7 @@ docs/                  # 사이트맵, 이미지 생성 기록
 ## 페이지 이동과 배포
 
 메뉴 이동은 일반 링크로 독립 URL을 엽니다. 브라우저 뒤로가기와 새로고침을 지원하며, 페이지별 제목을 설정합니다.
-배포 서버는 `/about`, `/procedures/eye` 같은 경로의 직접 접근을 `index.html`로 전달하도록 SPA fallback을 설정해야 합니다. Vite 개발/미리보기 서버는 이 동작을 기본 지원합니다.
+GitHub Pages는 저장소 경로 `/yunseul-plastic-surgery/` 아래에 배포합니다. `.github/workflows/deploy-pages.yml`이 `main` 푸시 시 테스트·빌드 후 `dist`를 배포합니다. 저장소 설정의 Pages 배포 소스는 **GitHub Actions**로 선택해야 합니다. 상세 URL 직접 접근은 `public/404.html`이 홈으로 전달한 뒤 원래 경로를 복원합니다.
 
 ## 실행
 
@@ -62,5 +62,5 @@ npm.cmd run build
 npm.cmd test
 ```
 
-개발 서버: `http://127.0.0.1:5173`
+개발 서버: `http://127.0.0.1:5173/yunseul-plastic-surgery/`
 

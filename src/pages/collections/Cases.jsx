@@ -1,3 +1,4 @@
+import SiteLink from "../../components/shared/SiteLink.jsx";
 import { useEffect, useRef, useState } from "react";
 import PageLayout from "../../components/layout/PageLayout.jsx";
 import BeforeAfterCompare from "../../components/shared/BeforeAfterCompare.jsx";
@@ -120,7 +121,7 @@ export default function Cases() {
               <div className="cases-dialog-details">
                 <h3>상담에서 확인할 내용</h3>
                 <p>{selected.detail}</p>
-                <a
+                <SiteLink
                   className="button button-dark"
                   href={
                     selected.procedureSlug
@@ -129,7 +130,7 @@ export default function Cases() {
                   }
                 >
                   {selected.procedureSlug ? "시술 정보 보기" : "상담 준비"}
-                </a>
+                </SiteLink>
               </div>
             </div>
           </div>

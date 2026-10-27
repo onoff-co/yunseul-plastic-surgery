@@ -1,7 +1,13 @@
+import SiteLink from "../shared/SiteLink.jsx";
 import { useEffect, useRef, useState } from "react";
 import { navigation } from "../../data/site.mjs";
 import { procedures } from "../../data/procedures.mjs";
+import { subProcedures } from "../../data/subProcedures.mjs";
 import MobileActionBar from "./MobileActionBar.jsx";
+import QuickConsultBar from "./QuickConsultBar.jsx";
+import QuickMenu from "./QuickMenu.jsx";
+import { fromSitePath } from "../../app/paths.mjs";
+import { toSiteUrl } from "../../app/paths.mjs";
 
 const submenus = {
   "/about": [
@@ -9,9 +15,14 @@ const submenus = {
     { label: "공간과 장비", href: "/about#facility-space-title" },
     { label: "방문 안내", href: "/location" },
   ],
+  // 시술 안내는 분야와 세부 시술을 함께 펼친다
   "/procedures": procedures.map((item) => ({
     label: item.name,
     href: `/procedures/${item.slug}`,
+    children: subProcedures[item.slug].map((sub) => ({
+      label: sub.name,
+      href: `/procedures/${item.slug}/${sub.slug}`,
+    })),
   })),
   "/doctors": [
     { label: "의료진 소개", href: "/doctors" },
@@ -37,7 +48,7 @@ export default function SiteHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
   const progressRef = useRef(null);
   const toggleRef = useRef(null);
-  const path = window.location.pathname.replace(/\/$/, "");
+  const path = fromSitePath(window.location.pathname).replace(/\/$/, "");
 
   useEffect(() => {
     let frame = 0;
@@ -92,14 +103,14 @@ export default function SiteHeader() {
         onMouseLeave={() => setActiveMenu(null)}
       >
         <div className="ys-header-inner">
-          <a className="ys-brand" href="/" aria-label="윤슬성형외과 홈">
+          <SiteLink className="ys-brand" href="/" aria-label="윤슬성형외과 홈">
             <img
-              src="/assets/images/logo/ysps-logo-monochrome.png"
+              src={toSiteUrl("/assets/images/logo/ysps-logo-monochrome.png")}
               alt="윤슬성형외과 YSPS"
               width="1983"
               height="793"
             />
-          </a>
+          </SiteLink>
           <nav
             className="ys-desktop-nav"
             aria-label="주요 메뉴"
@@ -118,7 +129,7 @@ export default function SiteHeader() {
                 }}
               >
                 <div className="ys-nav-label">
-                  <a
+                  <SiteLink
                     href={item.href}
                     aria-current={
                       path === item.href || path.startsWith(`${item.href}/`)
@@ -127,7 +138,7 @@ export default function SiteHeader() {
                     }
                   >
                     {item.label}
-                  </a>
+                  </SiteLink>
                   <button
                     type="button"
                     aria-label={`${item.label} 하위 메뉴`}
@@ -143,22 +154,35 @@ export default function SiteHeader() {
                   </button>
                 </div>
                 <div
-                  className="ys-submenu"
+                  className={`ys-submenu${submenus[item.href].some((link) => link.children) ? " ys-submenu--grouped" : ""}`}
                   id={`nav-${item.href.slice(1)}`}
                   hidden={activeMenu !== item.href}
                 >
-                  {submenus[item.href].map((link) => (
-                    <a href={link.href} key={link.href}>
-                      {link.label}
-                    </a>
-                  ))}
+                  {submenus[item.href].map((link) =>
+                    link.children ? (
+                      <div className="ys-submenu-group" key={link.href}>
+                        <SiteLink className="ys-submenu-heading" href={link.href}>
+                          {link.label}
+                        </SiteLink>
+                        {link.children.map((child) => (
+                          <SiteLink href={child.href} key={child.href}>
+                            {child.label}
+                          </SiteLink>
+                        ))}
+                      </div>
+                    ) : (
+                      <SiteLink href={link.href} key={link.href}>
+                        {link.label}
+                      </SiteLink>
+                    ),
+                  )}
                 </div>
               </div>
             ))}
           </nav>
-          <a className="ys-header-booking" href="/consultation">
+          <SiteLink className="ys-header-booking" href="/consultation">
             상담 준비
-          </a>
+          </SiteLink>
           <button
             ref={toggleRef}
             className="ys-menu-toggle"
@@ -184,18 +208,18 @@ export default function SiteHeader() {
           hidden={!isOpen}
         >
           {navigation.map((item) => (
-            <a
+            <SiteLink
               key={item.href}
               href={item.href}
               onClick={() => setIsOpen(false)}
             >
               {item.label}
-            </a>
+            </SiteLink>
           ))}
           <div className="ys-mobile-extra">
-            <a href="/location">방문 안내</a>
-            <a href="/faq">FAQ</a>
-            <a href="/pricing">비용 안내</a>
+            <SiteLink href="/location">방문 안내</SiteLink>
+            <SiteLink href="/faq">FAQ</SiteLink>
+            <SiteLink href="/pricing">비용 안내</SiteLink>
           </div>
         </nav>
         <div
@@ -213,6 +237,8 @@ export default function SiteHeader() {
         />
       )}
       <MobileActionBar />
+      <QuickConsultBar />
+      <QuickMenu />
     </>
   );
 }

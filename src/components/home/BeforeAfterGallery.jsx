@@ -1,3 +1,4 @@
+import SiteLink from "../shared/SiteLink.jsx";
 import { useState } from "react";
 import { procedures } from "../../data/procedures.mjs";
 import { pageImages } from "../../data/pageImages.mjs";
@@ -18,9 +19,9 @@ export default function BeforeAfterGallery() {
             <h2 id="ys-cases-title">변화를 살피는 기준</h2>
             <p>정면과 측면 이미지를 비교하며 진료 항목을 살펴보세요.</p>
           </div>
-          <a className="ys-link" href="/cases">
+          <SiteLink className="ys-link" href="/cases">
             비교 이미지 보기
-          </a>
+          </SiteLink>
         </div>
         <div
           className="ys-case-filters"
@@ -70,15 +71,15 @@ export default function BeforeAfterGallery() {
                 </dd>
               </div>
             </dl>
-            <a
+            <SiteLink
               className="ys-button ys-button-light"
               href={`/procedures/${selected}`}
             >
               시술 정보 확인
-            </a>
-            <a className="ys-link" href={`/consultation?procedure=${selected}`}>
+            </SiteLink>
+            <SiteLink className="ys-link" href={`/consultation?procedure=${selected}`}>
               이 분야 상담 준비
-            </a>
+            </SiteLink>
           </div>
         </div>
       </div>

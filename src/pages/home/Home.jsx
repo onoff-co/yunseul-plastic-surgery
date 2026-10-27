@@ -1,3 +1,4 @@
+import SiteLink from "../../components/shared/SiteLink.jsx";
 import SiteHeader from "../../components/layout/SiteHeader.jsx";
 import SiteFooter from "../../components/layout/SiteFooter.jsx";
 import HeroSection from "../../components/home/HeroSection.jsx";
@@ -22,15 +23,15 @@ export default function Home() {
         <nav className="ys-quick-links" aria-label="주요 진료 바로가기">
           <div className="ys-container">
             {procedures.map((item) => (
-              <a key={item.slug} href={`/procedures/${item.slug}`}>
+              <SiteLink key={item.slug} href={`/procedures/${item.slug}`}>
                 <strong>{item.name}</strong>
                 <small>{item.detail}</small>
-              </a>
+              </SiteLink>
             ))}
-            <a href="/consultation">
+            <SiteLink href="/consultation">
               <strong>상담 준비</strong>
               <small>궁금한 점부터 편안하게</small>
-            </a>
+            </SiteLink>
           </div>
         </nav>
         <ProcedurePreview />
@@ -41,7 +42,7 @@ export default function Home() {
           className="ys-care ys-container ys-section"
           aria-label="의료진과 진료 과정"
         >
-          <a className="ys-care-feature" href="/procedures">
+          <SiteLink className="ys-care-feature" href="/procedures">
             <ContentImage
               src={pageImages.home.care}
               alt="상담 공간 이미지"
@@ -54,7 +55,7 @@ export default function Home() {
               <p>관심 분야의 상담 기준과 주의사항을 살펴보세요.</p>
               <strong className="ys-link">시술 안내</strong>
             </div>
-          </a>
+          </SiteLink>
           <div className="ys-care-process">
             <h2>결정 전부터 회복 후까지</h2>
             <ol>
@@ -73,9 +74,9 @@ export default function Home() {
                 <p>일상 복귀와 경과 확인 일정까지 상담에 포함합니다.</p>
               </li>
             </ol>
-            <a className="ys-link" href="/about">
+            <SiteLink className="ys-link" href="/about">
               진료 과정 알아보기
-            </a>
+            </SiteLink>
           </div>
         </section>
         <section
@@ -86,9 +87,9 @@ export default function Home() {
             <div>
               <h2 id="ys-faq-title">상담이 처음이라면</h2>
               <p>방문 전에 자주 궁금해하시는 내용을 모았습니다.</p>
-              <a className="ys-link" href="/faq">
+              <SiteLink className="ys-link" href="/faq">
                 질문 전체 보기
-              </a>
+              </SiteLink>
             </div>
             <Accordion items={faq.slice(0, 4)} />
           </div>
@@ -100,12 +101,12 @@ export default function Home() {
           <div className="ys-visit-intro">
             <h2 id="ys-visit-title">편안하게 물어보세요.</h2>
             <p>원하는 진료 분야를 남겨 상담을 준비하세요.</p>
-            <a className="ys-button" href="/consultation">
+            <SiteLink className="ys-button" href="/consultation">
               상담 준비
-            </a>
-            <a className="ys-link" href="/pricing">
+            </SiteLink>
+            <SiteLink className="ys-link" href="/pricing">
               비용 안내
-            </a>
+            </SiteLink>
           </div>
           <div className="ys-hours">
             <h3>상담 전 확인</h3>
@@ -115,9 +116,9 @@ export default function Home() {
           <div className="ys-address">
             <h3>방문 안내</h3>
             <p>주소와 진료시간은 현재 안내되지 않습니다.</p>
-            <a className="ys-link" href="/location">
+            <SiteLink className="ys-link" href="/location">
               방문 전 확인 사항
-            </a>
+            </SiteLink>
           </div>
         </section>
       </main>

@@ -7,7 +7,19 @@ import { procedureVisuals, consultationSelection } from '../src/data/procedureVi
 import { clinicalNotes } from '../src/data/clinicalNotes.mjs';
 import { procedureGuides } from '../src/data/procedureGuides.mjs';
 import { doctors } from '../src/data/doctors.mjs';
+import { subProcedures } from '../src/data/subProcedures.mjs';
 import { existsSync } from 'node:fs';
+import { fromSitePath, toSiteUrl } from '../src/app/paths.mjs';
+
+test('GitHub Pages paths keep the repository prefix', () => {
+  const base = '/yunseul-plastic-surgery/';
+  assert.equal(toSiteUrl('/procedures/eye?mode=compare#options', base), `${base}procedures/eye?mode=compare#options`);
+  assert.equal(toSiteUrl('/assets/images/logo/ysps-logo-monochrome.png', base), `${base}assets/images/logo/ysps-logo-monochrome.png`);
+  assert.equal(toSiteUrl('#overview', base), '#overview');
+  assert.equal(toSiteUrl('https://example.com', base), 'https://example.com');
+  assert.equal(fromSitePath(`${base}procedures/eye`, base), '/procedures/eye');
+  assert.equal(fromSitePath(base, base), '/');
+});
 
 test('every procedure has an existing portrait', () => {
   for (const {slug} of procedures) {
@@ -67,6 +79,31 @@ test('all procedure URLs resolve to the correct detail', () => {
     assert.equal(route.slug, procedure.slug);
     assert.equal(route.title, procedure.name);
   }
+});
+
+test('every sub-procedure URL resolves to its own page with complete content', () => {
+  const slugs = new Set();
+  for (const procedure of procedures) {
+    const items = subProcedures[procedure.slug];
+    assert.equal(items.length, 3, procedure.slug);
+    for (const item of items) {
+      const route = resolveRoute(`/procedures/${procedure.slug}/${item.slug}`, procedures);
+      assert.equal(route.page, 'subProcedure');
+      assert.equal(route.slug, procedure.slug);
+      assert.equal(route.sub, item.slug);
+      assert.equal(item.problems.length, 3);
+      assert.ok(item.method.length >= 3 && item.targets.length >= 3 && item.faq.length >= 1);
+      assert.ok(!slugs.has(`${procedure.slug}/${item.slug}`));
+      slugs.add(`${procedure.slug}/${item.slug}`);
+    }
+  }
+  assert.equal(slugs.size, 12);
+});
+
+test('sub-procedure content does not publish unverified figures', () => {
+  // 수술 시간·기간·가격 같은 수치는 확인 전까지 게시하지 않는다
+  const text = JSON.stringify(subProcedures);
+  assert.doesNotMatch(text, /\d+\s*(분|시간|일|주|개월|년|원|만원|%)/);
 });
 
 test('trailing slashes are accepted', () => {

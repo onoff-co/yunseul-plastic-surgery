@@ -1,3 +1,4 @@
+import SiteLink from "../shared/SiteLink.jsx";
 export default function TrustPoints() {
   const points = [
     ["충분히 듣기", "상담의 첫 순서는 설명이 아니라 경청입니다."],
@@ -18,7 +19,7 @@ export default function TrustPoints() {
           </div>
         ))}
       </div>
-      <a className="text-link" href="/about">윤슬의 진료 철학 알아보기</a>
+      <SiteLink className="text-link" href="/about">윤슬의 진료 철학 알아보기</SiteLink>
     </section>
   );
 }

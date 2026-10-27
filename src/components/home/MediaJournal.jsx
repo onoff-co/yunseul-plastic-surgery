@@ -1,3 +1,4 @@
+import SiteLink from "../shared/SiteLink.jsx";
 import { homeStories } from "../../data/homeDesign.mjs";
 import ContentImage from "../shared/ContentImage.jsx";
 import PointerCard from "../shared/PointerCard.jsx";
@@ -10,9 +11,9 @@ export default function MediaJournal() {
     >
       <div className="ys-section-head">
         <h2 id="ys-stories-title">상담 전에 읽어보세요</h2>
-        <a className="ys-link" href="/faq">
+        <SiteLink className="ys-link" href="/faq">
           자주 묻는 질문
-        </a>
+        </SiteLink>
       </div>
       <div className="ys-story-grid">
         {homeStories.map((item) => (
