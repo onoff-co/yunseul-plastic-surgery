@@ -1,0 +1,40 @@
+/* New design direction: a bright clinical gallery with editorial rhythm. */
+:root {
+  --studio-ink: #1d2421;
+  --studio-muted: #68716b;
+  --studio-paper: #fbfaf7;
+  --studio-panel: #f1f0ea;
+  --studio-line: #d9ddd6;
+  --studio-sage: #aab7a8;
+  --studio-sage-deep: #667968;
+  --studio-clay: #b87b63;
+  --studio-white: #ffffff;
+  --studio-serif: "Iowan Old Style", "Nanum Myeongjo", Georgia, serif;
+  --studio-sans: "Noto Sans KR", "Pretendard", Arial, sans-serif;
+}
+body {
+  font-size: 16px;
+}
+a { color: inherit; }
+
+.page-shell { background: var(--studio-paper); }
+.trust-section h2 { color: var(--studio-ink); font-family: var(--studio-serif); font-size: clamp(2.4rem, 5.5vw, 6.4rem); font-weight: 400; line-height: 1.02; letter-spacing: -.08em; }
+.trust-points > div { background: transparent; }
+.trust-points h3 { font-weight: 700; }
+.interior-story { display: grid; grid-template-columns: .8fr 1.2fr; padding: clamp(4rem, 8vw, 8rem) 0; border-bottom: 1px solid var(--studio-line); }
+.interior-story h2 { margin: 0; }
+.interior-story p { margin-top: 0; }
+.interior-actions { display: flex; align-items: center; gap: 1rem; margin: 2rem 0; }
+.interior-actions .button:hover, .button-primary:hover { color: var(--studio-white); background: var(--studio-sage-deep); }
+.notice-list strong,
+.notice-list time { color: var(--studio-clay); }
+.collection-disclosure,
+.pricing-list p:not(.collection-kicker),
+.review-list small,
+.review-list time { color: var(--studio-muted); }
+@media (max-width: 900px) {
+  .interior-story { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .interior-actions { align-items: flex-start; flex-direction: column; }
+}

@@ -1,0 +1,42 @@
+.interior-content {
+  margin: auto;
+}
+.interior-content h2 {
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  line-height: 1.55;
+}
+.interior-story p {
+  margin-bottom: 1.25rem;
+}
+.interior-content .trust-section {
+  padding: 3rem;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+.interior-content .trust-section h2 {
+  margin: 0;
+}
+.interior-actions {
+  flex-wrap: wrap;
+  padding-top: 3rem;
+}
+.interior-content .procedure-directory h2 {
+  margin-top: 0;
+}
+.directory-meta {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--accent-dark);
+}
+@media (max-width: 767px) {
+  .interior-story {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .interior-story {
+    padding-block: 3rem;
+  }
+  .interior-content .trust-section {
+    padding: 1.5rem;
+  }
+}

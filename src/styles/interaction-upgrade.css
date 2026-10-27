@@ -1,0 +1,375 @@
+/* Reading, comparison and restrained pointer interactions. */
+:root {
+  --ys-header-translucent: rgb(245 241 232 / 82%);
+}
+:is(.ys-home, .interior-page, .treatment-page)
+  :is(
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    li,
+    dt,
+    dd,
+    label,
+    a,
+    button,
+    small,
+    strong,
+    span,
+    summary
+  ) {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+:is(.interior-page, .treatment-page) :is(h1, h2, h3, h4) {
+  text-wrap: balance;
+}
+:is(.interior-page, .treatment-page) :is(p, li, dd) {
+  text-wrap: pretty;
+  line-height: 1.85;
+}
+.ys-header {
+  transition: background-color 220ms ease;
+}
+.ys-header--scrolled {
+  background: var(--ys-header-translucent);
+}
+.ys-header--expanded,
+.ys-header:focus-within {
+  background: var(--ys-white);
+}
+.ys-reading-progress {
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background: var(--ys-gold-dark);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+.pointer-card {
+  translate: var(--card-x, 0px) 0;
+  transition: translate 200ms var(--ys-ease);
+}
+
+/* Keep the entire hero image and the next navigation in the first viewport. */
+@media (min-width: 1024px) {
+  .ys-home .ys-hero {
+    height: min(50vw, calc(100svh - var(--ys-header-height) - 104px));
+    min-height: 0;
+  }
+  .ys-hero .ys-hero-content,
+  .ys-hero-space .ys-hero-content {
+    padding-block: 32px 92px;
+  }
+  .ys-hero h1 {
+    font-size: clamp(36px, 3.6vw, 56px);
+    line-height: 1.35;
+  }
+  .ys-hero-copy {
+    max-width: 570px;
+  }
+  .ys-hero-copy p {
+    margin-top: 18px;
+  }
+  .ys-hero-copy .ys-button {
+    margin-top: 24px;
+  }
+  .ys-quick-links a {
+    min-height: 104px;
+    padding-block: 18px;
+  }
+}
+
+/* Equal source halves are layered without resizing their relative proportions. */
+.image-comparison {
+  min-width: 0;
+  color: var(--ys-ink);
+  background: var(--ys-paper);
+}
+.comparison-frame {
+  position: relative;
+  aspect-ratio: var(--compare-aspect);
+  overflow: hidden;
+  cursor: ew-resize;
+  touch-action: pan-y;
+  user-select: none;
+}
+.comparison-photo {
+  position: absolute;
+  inset: 0;
+  background-image: var(--compare-image);
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+  pointer-events: none;
+}
+.comparison-photo-after {
+  background-position: right center;
+}
+.comparison-photo-before {
+  background-position: left center;
+  clip-path: inset(0 calc(100% - var(--compare-position)) 0 0);
+}
+.comparison-labels {
+  position: absolute;
+  inset: 16px 16px auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  pointer-events: none;
+}
+.comparison-labels span {
+  padding: 6px 10px;
+  background: var(--ys-white);
+  color: var(--ys-ink);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.comparison-handle {
+  position: absolute;
+  inset: 0 auto 0 var(--compare-position);
+  width: 2px;
+  background: var(--ys-white);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.comparison-handle > span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--ys-ink);
+  border-radius: 50%;
+  background: var(--ys-white);
+  transform: translate(-50%, -50%);
+}
+.comparison-handle svg {
+  width: 30px;
+  height: 24px;
+  fill: none;
+  stroke: var(--ys-ink);
+  stroke-width: 1.5;
+}
+.comparison-controls {
+  display: grid;
+  grid-template-columns: auto minmax(60px, 1fr);
+  align-items: center;
+  gap: 8px 16px;
+  padding: 16px 20px 8px;
+}
+.comparison-controls label {
+  font-size: 13px;
+  font-weight: 500;
+}
+.comparison-controls input {
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  accent-color: var(--ys-ink);
+  cursor: ew-resize;
+}
+.comparison-buttons {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.comparison-buttons button {
+  min-height: 44px;
+  padding: 8px 0;
+  border: 0;
+  border-bottom: 1px solid var(--ys-sand);
+  color: var(--ys-ink);
+  background: transparent;
+  font-size: 13px;
+}
+.image-comparison:focus-within .comparison-handle > span,
+.image-comparison.is-dragging .comparison-handle > span {
+  border-color: var(--ys-gold-dark);
+  background: var(--ys-gold);
+}
+.ys-case-preview {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
+  gap: clamp(32px, 7vw, 100px);
+  align-items: center;
+}
+.ys-case-preview > figure {
+  width: 100%;
+  max-width: 480px;
+  margin-inline: auto;
+}
+
+/* One readable detail template for every treatment, with a stable local outline. */
+.treatment-criteria-dialog {
+  width: min(680px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--ys-sand);
+  background: var(--ys-paper);
+  color: var(--ys-ink);
+  font: inherit;
+}
+.treatment-criteria-dialog::backdrop {
+  background: var(--ys-scrim);
+}
+.treatment-criteria-dialog-content {
+  padding: clamp(24px, 4vw, 44px);
+}
+.treatment-criteria-dialog-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+.treatment-criteria-dialog h2 {
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.35;
+}
+.treatment-criteria-dialog-close {
+  display: grid;
+  place-items: center;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  border: 1px solid var(--ys-sand);
+  background: transparent;
+  color: var(--ys-ink);
+}
+.treatment-criteria-dialog-close svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+.treatment-criteria-dialog-content > p {
+  color: var(--ys-muted);
+  line-height: 1.75;
+}
+.treatment-criteria-dialog-topics {
+  margin-block: 28px;
+  border-top: 1px solid var(--ys-sand);
+}
+.treatment-criteria-dialog-topics article {
+  display: grid;
+  grid-template-columns: minmax(0, 150px) minmax(0, 1fr);
+  gap: 24px;
+  padding-block: 20px;
+  border-bottom: 1px solid var(--ys-sand);
+}
+.treatment-criteria-dialog-topics h3 {
+  font-size: 17px;
+  line-height: 1.6;
+}
+.treatment-criteria-dialog-topics p {
+  line-height: 1.75;
+}
+.treatment-criteria-dialog-content > .treatment-criteria-dialog-note {
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+.treatment-criteria-dialog .button {
+  display: inline-block;
+}
+@media (max-width: 600px) {
+  .treatment-criteria-dialog-topics article {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .comparison-buttons button:hover {
+    border-bottom-color: var(--ys-ink);
+  }
+}
+@media (max-width: 1023px) {
+  .ys-home .ys-hero .ys-hero-picture .ys-hero-image {
+    height: clamp(180px, 36svh, 300px);
+    max-height: 300px;
+  }
+  .ys-hero .ys-hero-content {
+    padding-block: 20px;
+  }
+  .ys-hero h1 {
+    font-size: clamp(28px, 4.5vw, 36px);
+    line-height: 1.35;
+  }
+  .ys-hero-copy p {
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .ys-hero-copy .ys-button {
+    margin-top: 16px;
+    min-height: 44px;
+    padding-block: 10px;
+  }
+  .ys-hero .ys-hero-bottom {
+    padding-bottom: 16px;
+  }
+  .ys-hero-tabs button {
+    min-height: 44px;
+  }
+  .ys-quick-links > div {
+    width: 100%;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .ys-quick-links a {
+    min-height: 68px;
+    align-items: center;
+    padding: 16px 6px;
+  }
+  .ys-quick-links strong {
+    font-size: 16px;
+    white-space: nowrap;
+  }
+  .ys-quick-links small,
+  .ys-quick-links a:last-child {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .ys-case-preview {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+@media (max-width: 360px) {
+  .ys-quick-links strong {
+    font-size: 14px;
+  }
+  .ys-hero h1 {
+    font-size: 26px;
+  }
+  .ys-hero .ys-hero-bottom > p {
+    font-size: 11px;
+  }
+  .ys-hero-tabs {
+    gap: 4px;
+  }
+  .ys-hero-tabs button {
+    padding-inline: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pointer-card {
+    translate: none;
+    transition: none;
+  }
+  .ys-header {
+    transition: none;
+  }
+}

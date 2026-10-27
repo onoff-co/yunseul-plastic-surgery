@@ -1,0 +1,13 @@
+.portrait-directory article { grid-template-columns: 1fr; gap: 1.5rem; }
+.portrait-directory article > div, .portrait-directory article > .text-link { margin-inline: 1.5rem; }
+.directory-portrait { display: block; overflow: hidden; }
+.directory-portrait img { display: block; width: 100%; height: 340px; object-fit: cover; object-position: 50% 33%; transition: transform .4s; }
+.directory-portrait:hover img { transform: scale(1.025); }
+@media (max-width: 767px) {
+ .portrait-directory { gap: 1rem; }
+ .directory-portrait img { height: 220px; }
+ .portrait-directory article > div, .portrait-directory article > .text-link { margin-inline: 1rem; }
+ .portrait-directory h2 { font-size: 1.3rem; }
+}
+@media (max-width: 400px) { .portrait-directory { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .directory-portrait img { transition: none; } .directory-portrait:hover img { transform: none; } }

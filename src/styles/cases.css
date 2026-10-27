@@ -1,0 +1,230 @@
+.cases-page {
+  padding-bottom: clamp(72px, 8vw, 112px);
+}
+.cases-gallery-heading h2 {
+  font-size: clamp(25px, 2.6vw, 36px);
+  line-height: 1.35;
+  font-weight: 500;
+}
+.cases-gallery {
+  padding-block: clamp(40px, 6vw, 80px);
+}
+.cases-gallery-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+.cases-gallery-heading p {
+  flex-shrink: 0;
+  color: var(--ys-muted);
+  font-size: 14px;
+}
+.cases-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.cases-filters button {
+  min-height: 44px;
+  padding: 9px 16px;
+  border: 1px solid var(--ys-sand);
+  background: transparent;
+  color: var(--ys-ink);
+  font-size: 14px;
+}
+.cases-filters button[aria-pressed="true"] {
+  border-color: var(--ys-ink);
+  background: var(--ys-ink);
+  color: var(--ys-white);
+}
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px 24px;
+}
+.cases-card {
+  min-width: 0;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--ys-sand);
+}
+.cases-preview {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: var(--ys-sand);
+  color: var(--ys-ink);
+  text-align: left;
+}
+.cases-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.cases-preview::after {
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 1px;
+  background: var(--ys-white);
+  content: "";
+  pointer-events: none;
+}
+.cases-preview-labels {
+  position: absolute;
+  inset: 12px 12px auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  pointer-events: none;
+}
+.cases-preview-labels span {
+  padding: 4px 7px;
+  background: var(--ys-white);
+  font-size: 12px;
+}
+.cases-preview-action {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 11px 14px;
+  background: var(--ys-black);
+  color: var(--ys-white);
+  font-size: 13px;
+  pointer-events: none;
+}
+.cases-preview:hover .cases-preview-action,
+.cases-preview:focus-visible .cases-preview-action {
+  background: var(--ys-gold-dark);
+}
+.cases-card-copy {
+  padding-top: 18px;
+}
+.cases-card-copy p:first-child {
+  margin-bottom: 7px;
+  color: var(--ys-gold-dark);
+  font-size: 14px;
+}
+.cases-card-copy h3 {
+  font-size: clamp(20px, 1.6vw, 25px);
+  line-height: 1.4;
+  font-weight: 500;
+}
+.cases-card-copy p:last-child {
+  margin-top: 10px;
+  color: var(--ys-muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.cases-dialog {
+  width: min(1060px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--ys-sand);
+  background: var(--ys-paper);
+  color: var(--ys-ink);
+  font: inherit;
+}
+.cases-dialog::backdrop {
+  background: var(--ys-scrim);
+}
+.cases-dialog-content {
+  padding: clamp(20px, 3vw, 40px);
+}
+.cases-dialog-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.cases-dialog-heading p {
+  margin-bottom: 4px;
+  color: var(--ys-muted);
+  font-size: 14px;
+}
+.cases-dialog-heading h2 {
+  font-size: clamp(24px, 2.5vw, 34px);
+  line-height: 1.4;
+}
+.cases-dialog-close {
+  display: grid;
+  place-items: center;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  border: 1px solid var(--ys-sand);
+  background: transparent;
+  color: var(--ys-ink);
+}
+.cases-dialog-close svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+.cases-dialog-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: start;
+}
+.cases-dialog .image-comparison {
+  background: var(--ys-sand);
+}
+.cases-dialog-details h3 {
+  font-size: 21px;
+  line-height: 1.45;
+}
+.cases-dialog-details > p {
+  margin-top: 14px;
+  color: var(--ys-muted);
+  line-height: 1.75;
+}
+.cases-dialog-details .button {
+  display: inline-block;
+  margin-top: 24px;
+}
+@media (max-width: 1023px) {
+  .cases-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 767px) {
+  .cases-dialog-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cases-dialog-heading {
+    margin-bottom: 18px;
+  }
+}
+@media (max-width: 600px) {
+  .cases-gallery-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .cases-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+  .cases-dialog {
+    width: calc(100% - 20px);
+    max-height: calc(100dvh - 20px);
+  }
+  .cases-dialog .comparison-controls {
+    padding-inline: 12px;
+  }
+  .cases-dialog .comparison-buttons {
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,45 @@
+.page-shell {
+  min-height: 100svh;
+  padding: 10rem 4rem 7rem;
+}
+.page-shell > * {
+  min-width: 0;
+}
+.procedure-directory {
+  max-width: 70rem;
+  margin: 0 auto;
+}
+.procedure-directory {
+  display: grid;
+  gap: 0.75rem;
+}
+.procedure-directory article {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+  background: var(--paper-deep);
+}
+.procedure-directory h2 {
+  margin: 1rem 0 0.75rem;
+  font-size: 2.4rem;
+}
+.procedure-directory article p:last-child {
+  max-width: 28rem;
+  color: var(--ink-soft);
+}
+.procedure-directory .text-link {
+  align-self: end;
+  white-space: nowrap;
+}
+@media (max-width: 900px) {
+  .page-shell {
+    padding: 7rem 1.25rem 4rem;
+  }
+  .procedure-directory article {
+    display: grid;
+  }
+  .procedure-directory .text-link {
+    justify-self: start;
+  }
+}

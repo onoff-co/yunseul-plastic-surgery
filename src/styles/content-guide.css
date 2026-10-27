@@ -1,0 +1,11 @@
+.content-guide { padding-block: 3.5rem; border-top: 1px solid #122b3d20; }
+.content-guide > h2 { margin-bottom: 1.5rem; font-size: clamp(1.4rem, 2.6vw, 2rem); line-height: 1.55; }
+.content-guide p { color: var(--ink-soft); line-height: 1.95; max-width: 65ch; }
+.content-guide-list { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; }
+.content-guide-list li { grid-template-columns: 2.5rem minmax(0, 1fr); gap: 1.25rem; }
+.content-guide-list h3 { font-size: 1.1rem; line-height: 1.6; margin-bottom: .75rem; }
+.medical-note { font-size: .8rem; color: var(--ink-soft); padding: 1.25rem; background: var(--paper-deep); margin-top: 1.5rem; line-height: 1.9; }
+@media (max-width: 600px) {
+  .content-guide { padding-block: 2.5rem; }
+  .content-guide-list li { grid-template-columns: 1.5rem minmax(0, 1fr); gap: .75rem; }
+}

@@ -1,0 +1,161 @@
+/* Shared reading rules, after the existing page-specific layouts. */
+:root {
+  --ys-reading-measure: 42rem;
+}
+:is(.ys-home, .interior-page, .treatment-page, .ys-footer)
+  :is(
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    li,
+    dt,
+    dd,
+    blockquote,
+    figcaption,
+    summary,
+    label,
+    small,
+    strong,
+    span,
+    a,
+    button
+  ) {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  line-break: strict;
+  hyphens: none;
+}
+:is(.ys-home, .interior-page, .treatment-page) :is(h1, h2, h3, h4) {
+  text-wrap: balance;
+}
+:is(.ys-home, .interior-page, .treatment-page, .ys-footer)
+  :is(p, dd, blockquote, figcaption, summary) {
+  text-wrap: pretty;
+}
+.text-phrase {
+  display: inline-block;
+}
+.hero-title-phrase {
+  display: inline-block;
+  max-inline-size: 100%;
+}
+.ys-page-navigation {
+  flex-wrap: wrap;
+}
+.ys-page-navigation > :is(a, svg) {
+  flex-shrink: 0;
+}
+.ys-page-navigation strong {
+  min-width: 0;
+}
+
+/* Short introductions read as phrases rather than a long line and a short tail. */
+.ys-hero-copy > p,
+.ys-section-head p,
+.ys-interior-intro p,
+.interior-story p,
+.ys-booking-aside p,
+.consultation-form .form-notice,
+.review-list blockquote,
+.ys-footer-bottom p {
+  text-wrap: balance;
+}
+.ys-hero-copy h1 {
+  max-inline-size: 12em;
+}
+.ys-hero-copy > p {
+  max-inline-size: 25rem;
+}
+.interior-story p,
+.ys-interior-intro p,
+.content-guide p,
+.policy-copy p,
+.collection-disclosure {
+  max-inline-size: var(--ys-reading-measure);
+}
+.policy-copy {
+  max-width: var(--ys-reading-measure);
+}
+
+/* The list's title and description need useful column widths at intermediate sizes. */
+.content-guide-list li > div {
+  grid-template-columns: minmax(12rem, 0.45fr) minmax(0, 1.55fr);
+  gap: clamp(24px, 3vw, 40px);
+  align-items: start;
+}
+.content-guide-list :is(h3, p) {
+  min-width: 0;
+  max-width: none;
+}
+.content-guide-list p {
+  line-height: 1.85;
+  text-wrap: balance;
+}
+.review-list {
+  gap: 12px;
+  padding-block: 32px 64px;
+  border-block: 1px solid var(--ys-sand);
+}
+.review-list h2 {
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 500;
+}
+.review-list p {
+  max-width: var(--ys-reading-measure);
+  color: var(--ys-muted);
+}
+.pricing-list article {
+  padding-inline: 0;
+  border-top: 1px solid var(--ys-sand);
+  background: transparent;
+}
+.notice-list {
+  padding-block: 32px 64px;
+  border-top: 1px solid var(--ys-sand);
+}
+
+@media (max-width: 1023px) {
+  .content-guide-list li > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .ys-interior-intro {
+    gap: 32px;
+  }
+}
+@media (max-width: 767px) {
+  .ys-booking-aside > div {
+    padding: 24px;
+  }
+  .ys-booking-aside h2 {
+    font-size: clamp(24px, 6.5vw, 28px);
+    line-height: 1.45;
+  }
+  .content-guide-list li {
+    padding: 24px 20px;
+  }
+  .ys-interior-closing {
+    flex-wrap: wrap;
+  }
+  .review-list blockquote {
+    word-break: keep-all;
+    line-height: 1.7;
+  }
+}
+@media (max-width: 360px) {
+  .ys-home h2 {
+    font-size: 27px;
+  }
+  .ys-interior-intro h2,
+  .ys-booking-faq > h2 {
+    font-size: 26px;
+  }
+  .notice-list article {
+    padding: 20px;
+  }
+  .notice-list article h2 {
+    font-size: 18px;
+  }
+}

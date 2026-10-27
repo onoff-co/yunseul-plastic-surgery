@@ -1,0 +1,280 @@
+/* Content images keep their complete source composition at every breakpoint. */
+:is(.ys-home, .interior-page, .treatment-page) .content-image,
+.ys-story:nth-child(n) .content-image,
+.ys-procedure-panel .content-image,
+.portrait-directory .directory-portrait .content-image,
+.facility-gallery-item .content-image,
+.ys-booking-aside .content-image,
+.ys-interior-photo .content-image,
+.ys-care-feature > .content-image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center;
+  filter: none;
+}
+
+/* A picture supplies a dedicated mobile composition instead of a zoomed desktop crop. */
+.ys-home .ys-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 0;
+  height: auto;
+  padding-top: 0;
+}
+.ys-hero-picture {
+  display: block;
+  position: relative;
+  z-index: -2;
+  grid-area: 1 / 1;
+  min-width: 0;
+  width: 100%;
+  align-self: stretch;
+}
+.ys-home .ys-hero .ys-hero-picture .ys-hero-image {
+  position: static;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+  animation: ys-fade 450ms ease both;
+}
+.ys-hero .ys-hero-content {
+  grid-area: 1 / 1;
+  align-self: center;
+}
+.ys-hero-space .ys-hero-picture {
+  aspect-ratio: 2;
+}
+.ys-hero-space .ys-hero-content {
+  padding-block: 48px 110px;
+}
+.ys-hero-space {
+  background: var(--ys-ink);
+}
+.ys-hero-space::after {
+  background: var(--ys-scrim);
+}
+.ys-hero .ys-hero-bottom > p {
+  padding: 4px 8px;
+  color: var(--ys-ink);
+  background: var(--ys-paper);
+}
+
+/* Image height follows the photograph; explanatory notes sit outside its pixels. */
+.ys-procedure-panel {
+  align-items: center;
+}
+.ys-procedure-panel figure {
+  min-height: 0;
+  height: auto;
+  align-self: center;
+}
+.ys-procedure-panel figcaption {
+  position: static;
+  margin: 0;
+  padding: 12px;
+}
+.ys-case-preview figure {
+  min-width: 0;
+}
+.ys-story figure {
+  overflow: visible;
+}
+.ys-story figure b {
+  position: static;
+  display: inline-block;
+  margin-top: 12px;
+  padding: 4px 0;
+  color: var(--ys-ink);
+  background: transparent;
+  font-weight: 500;
+  opacity: 1;
+  transform: none;
+}
+.ys-story h3 {
+  margin-top: 12px;
+}
+.ys-care-feature {
+  align-self: start;
+  overflow: visible;
+}
+.portrait-directory .directory-portrait {
+  height: auto;
+  aspect-ratio: auto;
+  overflow: visible;
+}
+.facility-equipment .facility-gallery-grid {
+  grid-template-columns: 1fr 1fr;
+}
+.facility-gallery-item {
+  align-self: start;
+}
+.ys-booking-aside .content-image {
+  background: var(--ys-sand);
+}
+
+/* A video's authored frame is also preserved. Captions do not cover the room. */
+.ys-space-stage {
+  background: var(--ys-sand);
+}
+.ys-space-stage > video,
+.ys-space-stage > .content-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+.ys-space-stage > video {
+  aspect-ratio: 16 / 9;
+}
+.ys-space-caption {
+  position: static;
+  max-width: none;
+  padding: 22px 28px;
+}
+.ys-space-stage:has(.ys-video-toggle) .ys-space-caption {
+  padding-right: 240px;
+}
+.ys-video-toggle {
+  top: auto;
+  bottom: 22px;
+  right: 28px;
+}
+.ys-space-tabs {
+  margin-top: 0;
+}
+
+.ys-location-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  align-items: start;
+}
+.ys-location-copy {
+  max-width: 44rem;
+}
+.ys-location-copy h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.ys-location-copy h3 {
+  margin-block: 28px 16px;
+  font-size: 20px;
+}
+.ys-location-copy .hours {
+  max-width: 360px;
+  margin-block: 16px 24px;
+}
+.ys-location-copy .hours > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+.ys-location-copy .ys-button {
+  margin-top: 24px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ys-story:hover .content-image,
+  .ys-care-feature:hover .content-image,
+  .portrait-directory .directory-portrait:hover .content-image {
+    transform: none;
+    filter: brightness(0.97);
+  }
+}
+@media (max-width: 1023px) {
+  .ys-home .ys-hero {
+    display: flex;
+    flex-direction: column;
+  }
+  .ys-hero-picture {
+    z-index: auto;
+    align-self: auto;
+  }
+  .ys-hero .ys-hero-content {
+    background: var(--ys-paper);
+  }
+  .ys-hero .ys-hero-copy {
+    max-width: 100%;
+  }
+  .ys-hero .ys-hero-copy p {
+    max-width: 520px;
+  }
+  .ys-hero-space .ys-hero-picture {
+    aspect-ratio: auto;
+  }
+  .ys-hero-space::after {
+    display: none;
+  }
+  .ys-hero-space,
+  .ys-hero-space .ys-hero-copy p {
+    color: var(--ys-ink);
+  }
+  .ys-hero-space .ys-button {
+    color: var(--ys-paper);
+    background: var(--ys-ink);
+  }
+  .ys-hero .ys-hero-bottom {
+    position: static;
+    background: var(--ys-paper);
+  }
+  .ys-hero-space {
+    background: var(--ys-paper);
+  }
+}
+@media (max-width: 767px) {
+  .ys-procedure-panel figure {
+    height: auto;
+    min-height: 0;
+  }
+  .facility-equipment .facility-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  .ys-location-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .ys-space-stage:has(.ys-video-toggle) .ys-space-caption {
+    padding-right: 28px;
+  }
+  .ys-video-toggle {
+    position: static;
+    margin: 0 20px 20px;
+  }
+}
+@media (max-width: 600px) {
+  .ys-home .ys-hero .ys-hero-picture .ys-hero-image {
+    height: 350px;
+    max-height: 350px;
+    object-fit: contain;
+  }
+  .ys-home .ys-hero-space .ys-hero-picture .ys-hero-image {
+    height: auto;
+    max-height: none;
+  }
+  .ys-hero-picture {
+    background: var(--ys-sand);
+  }
+  .ys-procedure-copy {
+    padding-top: 24px;
+  }
+  .ys-story:nth-child(n) figure {
+    width: 100%;
+  }
+  .ys-hero .ys-hero-content {
+    padding-top: 24px;
+  }
+  .ys-space-caption {
+    padding: 20px;
+  }
+}

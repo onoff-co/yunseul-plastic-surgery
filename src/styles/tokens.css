@@ -1,0 +1,37 @@
+:root {
+  /* Color roles. 새 스타일은 이 이름만 사용한다. */
+  --color-ink: #1b1a17;
+  --color-ink-muted: #655f57;
+  --color-surface: #f5f1e8;
+  --color-surface-raised: #fffdf8;
+  --color-surface-sunken: #e6e0d5;
+  --color-inverse: #0f0f0d;
+  --color-on-inverse: #fffdf8;
+  --color-on-inverse-muted: #c9c4b9;
+  --color-accent: #c8a46b; /* 선·표시용. 밝은 배경의 글자에는 쓰지 않는다. */
+  --color-accent-strong: #a07c48;
+  --color-line: rgb(27 26 23 / 14%);
+  --color-line-strong: #1b1a17;
+
+  /* Type scale */
+  --fs-caption: 13px;
+  --fs-small: 14px;
+  --fs-body: 16px;
+  --fs-body-large: 17px;
+  --fs-lead: clamp(18px, 1.4vw, 21px);
+  --fs-h3: clamp(18px, 1.5vw, 22px);
+  --fs-h2: clamp(28px, 2.8vw, 40px);
+  --fs-h1: clamp(44px, 5.4vw, 84px);
+
+  --paper-deep: #e6e1d6;
+  --mist: #d8e0df;
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 7rem;
+  --radius: 0;
+  --sans: "Noto Sans KR", "DM Sans", sans-serif;
+  --display: "DM Sans", "Noto Sans KR", sans-serif;
+}

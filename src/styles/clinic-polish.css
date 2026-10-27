@@ -1,0 +1,31 @@
+/* Editorial clinic finish. Retains the existing split-screen brand direction. */
+:root { --surface-light: #faf9f5; --surface-cool: #e5ebe9; }
+.button { border-radius: 0; min-height: 48px; }
+.button:hover { background: var(--accent-dark); transform: translateY(-3px); }
+.interior-content .trust-section { background: var(--ink); color: var(--white); }
+.trust-points { grid-template-columns: 1fr; }
+.trust-points > div { border: 0; }
+.trust-points p { opacity: .85; }
+.trust-section .text-link { justify-self: start; color: var(--white); }
+.consultation-form input, .consultation-form select, .consultation-form textarea { background: var(--surface-light); border-radius: 0; min-height: 48px; }
+.form-notice { font-size: .85rem; color: var(--ink-soft); }
+.form-status:empty { display: none; }
+.content-guide { border: 0; }
+.content-guide-list { gap: .75rem; }
+.content-guide-list li { display: block; padding: 1.75rem 2rem; background: var(--surface-cool); }
+.content-guide-list li:nth-child(even) { background: var(--paper-deep); }
+.content-guide-list li > div { display: grid; }
+.content-guide-list h3 { margin: 0; }
+.content-guide-list p { color: var(--ink); }
+.procedure-directory article { transition: transform .2s, background .2s; }
+.procedure-directory article:hover { transform: translateY(-3px); background: var(--surface-cool); }
+@media (max-width: 600px) {
+  .trust-points > div { grid-template-columns: 1fr; gap: .5rem; }
+  .content-guide-list li { padding: 1.5rem; }
+  .content-guide-list li > div { grid-template-columns: 1fr; gap: .75rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .procedure-directory article { transition: none; }
+  .procedure-directory article:hover,
+.button:hover { transform: none; }
+}
